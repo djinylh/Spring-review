@@ -7,8 +7,10 @@ class HttpService {
     console.log('HttpService 객체 생성');
   }
 
-  async postMemo(item) {
+  async save(item) {
     console.log('postMemo-item: ', item);
+    const res = await axios.post('/memo', item);
+    return res.data;
   }
 
   async getMemoList(params) {
@@ -20,11 +22,15 @@ class HttpService {
     console.log('getMemoList - res.date: ', res.data);
     return res.data;
   }
-  async getMemo(id) {
-    console.log('getMemo-id : ', id);
+  async findById(id) {
+    console.log('findById-id : ', id);
+    const res = await axios.get(`/memo/${id}`);
+    return res.data;
   }
-  async putMemo(item) {
-    console.log('putMemo - item : ', item);
+  async modify(item) {
+    console.log('modify - item : ', item);
+    const res = await axios.put('/memo', item);
+    return res.data;
   }
   async deleteMemo(params) {
     console.log('deleteMemo - params: ', params);
