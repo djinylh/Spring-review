@@ -42,9 +42,23 @@ const submit = async () => {
   }
 
   if (route.params.memoId) {
-    return;
+    // 수정
+    const bodyJson = {
+      memoId: route.params.memoId,
+      title: state.memo.title,
+      ctnts: state.memo.ctnts,
+    };
+
+    const data = await httpService.modify(bodyJson);
+
+    if (data.resultData === 1) {
+      router.push({ path: '/' });
+    } else {
+      alert(data.resultMessage);
+    }
+
+    return httpService.modify(bodyJson);
   }
-  // 등록 ? 수정? 구분이 되어야함
 
   // 밑. 등록
 
